@@ -1,0 +1,184 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>myObservatory</groupId>
+	<artifactId>myObservatory</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>myObservatory</name>
+	<url>http://maven.apache.org</url>
+
+	<repositories>
+		<repository>
+			<id>report portal repo</id>
+			<name>report portal repo</name>
+			<url>https://dl.bintray.com/epam/reportportal/</url>
+		</repository>
+	</repositories>
+
+	<properties>
+<!--		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+		<cucumber.version>6.10.0</cucumber.version>
+		<extentReport.version>5.0.5</extentReport.version>
+		<url>https://aia.experitest.com/wd/hub</url>
+		<device>00008030-000A318E3C80802E</device>
+		<platform>IOS</platform>
+		<useProxy>False</useProxy>
+		<accessKey>eyJhbGciOiJIUzI1NiJ9.eyJ4cC51IjoxOTQ4NCwieHAucCI6MTUxNTA3LCJ4cC5tIjoxNTkwMzgwNDA2MDgyLCJleHAiOjE5MzM3MjY2MTAsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.NiN00pcLLXGLXgkV1Rty0m5hRRnLf9RQj4vSLdH6Bbs</accessKey>
+		<jiraUploadFlag>False</jiraUploadFlag>
+	</properties>
+
+	<dependencies>
+
+		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
+		<dependency>
+		    <groupId>org.testng</groupId>
+		    <artifactId>testng</artifactId>
+  		  	<version>7.1.0</version>  		  
+		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-testng</artifactId>
+			<version>${cucumber.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>tech.grasshopper</groupId>
+			<artifactId>extentreports-cucumber6-adapter</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>${extentReport.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.epam.reportportal</groupId>
+			<artifactId>agent-java-cucumber6</artifactId>
+			<version>5.0.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>3.141.59</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.appium/java-client -->
+		<dependency>
+			<groupId>io.appium</groupId>
+			<artifactId>java-client</artifactId>
+			<version>7.0.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.10.19</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>4.1.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>4.1.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20190722</version>
+		</dependency>
+
+		<!-- 	<dependency>
+                <groupId>com.sikulix</groupId>
+                <artifactId>sikulixapi</artifactId>
+                <version>1.1.0</version>
+            </dependency>
+             -->
+		<dependency>
+			<groupId>org.apache.maven.surefire</groupId>
+			<artifactId>surefire-testng</artifactId>
+			<version>2.22.1</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<!--<version>3.6.1</version>-->
+				<version>3.10.0</version>
+				<configuration>
+<!--					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<compilerArguments>
+						<extdirs>${basedir}/resource/libs</extdirs>
+					</compilerArguments>-->
+					<source>8</source>
+					<target>8</target>
+					<encoding>UFT-8</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.1</version>
+				<configuration>
+					<additionalClasspathElements>
+						<additionalClasspathElement>${basedir}/resource/libs/seetest-client-20.3.jar</additionalClasspathElement>
+						<additionalClasspathElement>${basedir}/resource/libs/appium-seetest-extension-20.3.jar</additionalClasspathElement>
+						<additionalClasspathElement>${basedir}/resource/libs/httpclient-4.5.9.jar</additionalClasspathElement>
+						<additionalClasspathElement>${basedir}/resource/libs/java-client-6.1.0.jar</additionalClasspathElement>
+						<additionalClasspathElement>${basedir}/resource/libs/manage-client-api-20.3.jar</additionalClasspathElement>
+					</additionalClasspathElements>
+
+					<suiteXmlFiles>
+						<suiteXmlFile>${basedir}/src/test/java/Testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+
+					<!--     				<testFailureIgnore>true</testFailureIgnore> -->
+					<!--     				<debugForkedProcess>true</debugForkedProcess> -->
+
+					<systemPropertyVariables>
+						<url>${url}}</url>
+						<device>${device}</device>
+						<platform>${platform}</platform>
+						<useProxy>${useProxy}</useProxy>
+						<accessKey>${accessKey}</accessKey>
+						<jiraUploadFlag>${jiraUploadFlag}</jiraUploadFlag>
+					</systemPropertyVariables>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,0 +1,7 @@
+/target/
+/reports/
+/test-output/
+/.DS_Store
+/.idea/
+/output/
+/src/test/java/Testng.xml
